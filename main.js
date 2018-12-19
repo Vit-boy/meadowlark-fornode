@@ -8,6 +8,7 @@ var fortunes = [
 		"Whenever possible, keep it simple."
 ]
 
+
 app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
