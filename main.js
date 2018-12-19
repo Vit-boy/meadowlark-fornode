@@ -1,13 +1,8 @@
 var express = require('express');
 var app = express();
 var handlebars = require('express3-handlebars').create({defaultLayout: 'main'});
-var fortunes = [
-		"Conquer your fears or they will conquer you.",
-		"Rivers need springs",
-		"Do not fear what you don't know.",
-		"Whenever possible, keep it simple."
-]
-
+var fortune = require('./lib/fortune.js');
+console.log(fortune)
 
 app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', handlebars.engine);
@@ -22,8 +17,7 @@ app.get('', function(req, res){
 app.get('/about', function(req, res){
 	// res.type('text/plain')
 	// res.send('About Meadowlark Travel')
-	var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-	res.render('about', { fortune: randomFortune})
+	res.render('about', { fortune: fortune.getFortune() })
 })
 
 app.use(function (req, res) {
